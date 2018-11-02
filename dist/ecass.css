@@ -1,0 +1,91 @@
+#textContainer{
+   width: 90%;
+   border: 1px solid black;
+   background-color: white;
+   margin:1%;
+   min-height: 50%;
+}
+
+#toolbar{
+   border-radius: 5%;
+   width:90%;
+   border: 2px solid;
+   margin: 1%;
+}
+
+.buttons{
+   border: 2px solid;
+   border-radius: 5%;
+   font-size: 15px;
+   margin: 1px;
+}
+
+#dragger {
+   position: relative;
+   width: 100%;
+   height: 5%;
+   cursor: move;
+   background-color: rgb(79, 79, 80);
+   color: #fff;
+}
+
+.textbox {
+   position: relative;
+   height: 95%;
+   width: 100%;
+}
+
+.resizable {
+   display: inline-block;
+   background: white;
+   width: 200px;
+   height: 200px;
+   position: absolute;
+}
+
+.resizable .resizers{
+   width: 100%;
+   height: 100%;
+   border: 1px dotted rgb(79, 79, 80);
+   box-sizing: border-box;
+}
+
+.resizable .resizers .resizer{
+   width: 6px;
+   height: 6px;
+   border-radius: 30%; 
+   background: white;
+   border: 1px solid #000000;  
+   position: absolute;
+}
+
+.resizable .resizers .resizer.top-left {
+left: -5px;
+top: -5px;
+cursor: nwse-resize; /*resizer cursor*/
+}
+
+.resizable .resizers .resizer.top-right {
+right: -5px;
+top: -5px;
+cursor: nesw-resize;
+}
+
+.resizable .resizers .resizer.bottom-left {
+left: -5px;
+bottom: -5px;
+cursor: nesw-resize;
+}
+
+.resizable .resizers .resizer.bottom-right {
+right: -5px;
+bottom: -5px;
+cursor: nwse-resize;
+}
+
+.image{
+    display: inline-block;
+    /* float: left; */
+    width: 100%;
+    height: 95%;
+}
