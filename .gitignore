@@ -124,9 +124,9 @@ Thumbs.db
 
 **/npm-cache
 
-/node_modules
+node_modules
 
-/tmp
+tmp
 
 .idea/
 
