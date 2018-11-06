@@ -1,16 +1,23 @@
-function makeResizableDiv(div) {
-    const element = document.querySelector(div);
-    const resizers = document.querySelectorAll(div + ' .resizer')
-    let original_width = 0;
-    let original_height = 0;
-    let original_x = 0;
-    let original_y = 0;
-    let original_mouse_x = 0;
-    let original_mouse_y = 0;
-    for (let i = 0;i < resizers.length; i++) {
-      const currentResizer = resizers[i];
+function makeResizableDiv() {
+    let elements = document.getElementsByClassName('resizable');
+    
+    for (let i=0; i < elements.length; i++){
+      let element = elements[i];
+      let resizers = element.getElementsByClassName('resizer');
+      
+      let original_width = 0;
+      let original_height = 0;
+      let original_x = 0;
+      let original_y = 0;
+      let original_mouse_x = 0;
+      let original_mouse_y = 0;
+    
+      for (let i = 0; i < resizers.length; i++) {
+      let currentResizer = resizers[i];
+      
       currentResizer.addEventListener('mousedown', function(e) {
         e.preventDefault()
+        
         original_width = parseFloat(getComputedStyle(element, null).getPropertyValue('width').replace('px', ''));
         original_height = parseFloat(getComputedStyle(element, null).getPropertyValue('height').replace('px', ''));
         original_x = element.getBoundingClientRect().left;
@@ -19,6 +26,7 @@ function makeResizableDiv(div) {
         original_mouse_y = e.pageY;
         window.addEventListener('mousemove', resize)
         window.addEventListener('mouseup', stopResize)
+        
       })
       
       function resize(e) {
@@ -48,8 +56,9 @@ function makeResizableDiv(div) {
         window.removeEventListener('mousemove', resize)
       }
     }
+    
+    }
   }
 
   module.exports = makeResizableDiv;
   
-  // makeResizableDiv('.resizable')
