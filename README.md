@@ -12,6 +12,8 @@ A simple Google slides like web Application built in HTML, CSS and JavaScript.
 5) User can add an image on the slide by clicking on choose file button and selecting the image to add.
 6) User can resize both text and image objects by using the corners of the selected object.
 7) User can drag and drop both text and image objects by selecting the top border of the object.
+8) User can add a title to the slide.
+9) User can use the present button to switch the white canvas to fullscreen and present.
   
 <b> Webpack </b>
   
@@ -29,7 +31,7 @@ A simple Google slides like web Application built in HTML, CSS and JavaScript.
 2) Install the Dependencies using following commands:
 
   a) npm init
-  b) npm install --save-dev wepback
+  b) npm install --save-dev webpack
 
 3) Build the App using:
 
