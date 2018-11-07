@@ -1,8 +1,13 @@
+//function to make the text and image div resizable
 function makeResizableDiv() {
+
+    //getting all divs with class resizable
     let elements = document.getElementsByClassName('resizable');
     
     for (let i=0; i < elements.length; i++){
       let element = elements[i];
+
+      //getting all the resizers divs
       let resizers = element.getElementsByClassName('resizer');
       
       let original_width = 0;

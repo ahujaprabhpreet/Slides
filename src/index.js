@@ -1,9 +1,7 @@
 import dragElement from './drag.js';
 import makeResizableDiv from './resize.js';
 
-// var drag = require('dragElement');
-// var resize = require('makeResizableDiv');
-
+//TOOLBAR//
 //bold text
 document.getElementById('boldBtn').addEventListener('click', function(){document.execCommand('bold',false,null)});
 
@@ -16,28 +14,38 @@ document.getElementById('underlineBtn').addEventListener('click', function(){doc
 //strikethrough text
 document.getElementById('strikeBtn').addEventListener('click', function(){document.execCommand('strikeThrough',false,null)});
 
+//subscript text
+document.getElementById('subscriptBtn').addEventListener('click', function(){document.execCommand('subscript',false,null)});
+
+//superscript text
+document.getElementById('superscriptBtn').addEventListener('click', function(){document.execCommand('superscript',false,null)});
+
+//Fullscreen Present
+document.getElementById('fullscreen').addEventListener('click', function(){
+    document.getElementById('textContainer').webkitRequestFullscreen();
+});
+
+
 //upload image
-var input = document.querySelector('input');
+var input = document.getElementById('imageChooser');
 input.addEventListener('change', uploadImage);
 
 function uploadImage(){
     
-  var files = input.files;
-  var fileTypes = ['image/jpg','image/jpeg','image/png']
-  
-  var imageDiv = document.createElement('div');
-  imageDiv.setAttribute('class','resizable');
+  let files = input.files;
+  let fileTypes = ['image/jpg','image/jpeg','image/png'];
 
-   //var imageDiv = createResizableDiv();
+  let imageDiv = createResizableDiv();
+  imageDiv.firstChild.childNodes[1].style.display='none';
 
   for(let i = 0; i < files.length; i++) {
 
       if(validFileType(files[i])) {
-        var image = document.createElement('img');
+        let image = document.createElement('img');
         image.src = window.URL.createObjectURL(files[i]);
         image.setAttribute('class','image');
 
-        imageDiv.appendChild(image);
+        imageDiv.firstChild.appendChild(image);
         document.getElementById('textContainer').appendChild(imageDiv);
 
       } 
@@ -52,9 +60,10 @@ function uploadImage(){
     
       return false;
   }
+  
 }
 
-
+//Creating new divs for image and text
 document.getElementById('addTextBtn').addEventListener('click',createResizableDiv);
 
 function createResizableDiv(){
@@ -65,69 +74,56 @@ function createResizableDiv(){
   
   let resizersDiv = document.createElement('div');
   resizersDiv.setAttribute('class','resizers');
-  //document.getElementById('resizable').appendChild(resizersDiv);
-//   var resizeable = document.getElementsByClassName('resizable');
-//   for(let i=0; i< resizeable.length; i++){
-    div.appendChild(resizersDiv);
-//   }
+  div.appendChild(resizersDiv);
+
   
   let draggerDiv = document.createElement('div');
-  draggerDiv.setAttribute('id','dragger');
-  //document.getElementById('resizers').appendChild(draggerDiv);
-//   var resizers = document.getElementsByClassName('resizers');
-//   for(let i=0; i< resizers.length; i++){
-    resizersDiv.appendChild(draggerDiv);
-//   }
-
-let textBoxDiv = document.createElement('div');
-textBoxDiv.setAttribute('class','textbox');
-resizersDiv.appendChild(textBoxDiv);
+  draggerDiv.setAttribute('class','dragger');  
+  resizersDiv.appendChild(draggerDiv);
 
 
-
-//   let resizer = document.getElementsByClassName('resizer');
-//   for(let i=0; i< resizer.length; i++){
+  let textBoxDiv = document.createElement('div');
+  textBoxDiv.setAttribute('class','textbox');
+  resizersDiv.appendChild(textBoxDiv);
+  CKEDITOR.inline(textBoxDiv);
   
     let resizerTL = document.createElement('div');
     resizerTL.setAttribute('class','resizer top-left');
-    //document.getElementById('resizers').appendChild(resizerTL);
     resizersDiv.appendChild(resizerTL);
   
     let resizerTR = document.createElement('div');
     resizerTR.setAttribute('class','resizer top-right');
-    //document.getElementById('resizers').appendChild(resizerTR);
     resizersDiv.appendChild(resizerTR);
     
     let resizerBL = document.createElement('div');
     resizerBL.setAttribute('class','resizer bottom-left');
-    //document.getElementById('resizers').appendChild(resizerBL);
     resizersDiv.appendChild(resizerBL);
     
     let resizerBR = document.createElement('div');
-    resizerBR.setAttribute('class','resizer botttom-right');
-    //document.getElementById('resizers').appendChild(resizerBR);
+    resizerBR.setAttribute('class','resizer bottom-right');
     resizersDiv.appendChild(resizerBR);
 
+    makeTextboxEditable();
+    makeDraggable();
+    makeResizableDiv();
     
-
-//   return div;
-
-
-//makeResizableDiv('.resizable')
-
-makeTextboxEditable();
-
-
-document.getElementById('dragger').addEventListener('mousedown',dragElement(document.getElementById("dragger")));
-
+    return div;
 }
+
 
 //make div content editable
 function makeTextboxEditable(){
-    // document.getElementById('textbox').contentEditable='true';
     let textbox = document.getElementsByClassName('textbox');
     for(let i=0; i<textbox.length; i++){
         textbox[i].contentEditable = 'true';
+    }
+}
+
+//make divs draggable
+function makeDraggable(){
+    let draggers = document.getElementsByClassName('dragger');
+    for(let i=0; i<draggers.length;i++){
+        draggers[i].addEventListener('mousedown', dragElement(draggers[i]));
     }
 }
 

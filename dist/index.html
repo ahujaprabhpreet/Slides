@@ -5,16 +5,20 @@
         </title>
         <link rel="stylesheet" type="text/css" href="ecass.css"> 
     </head>
-    <body style="background:gray" >
+    <body style="background:rgb(252, 250, 250)" >
+        <div id="header">
+            <img src="logo.png" id="logo">
+            <input type="text" placeholder="Untitled Presentation" id="slideName">
+            <button id="fullscreen" class="buttons">
+                    Present >>
+                </button>
+        </div>
 
         <div id="toolbar">
             <button id="addTextBtn" class="buttons">
                 Text
             </button>
 
-            <button id="addImageBtn" class="buttons">
-                Image
-            </button>
             <input type="file" accept="image/png image/jpg image/jpeg" id="imageChooser">
 
             <button id="boldBtn" class="buttons">
@@ -31,29 +35,25 @@
 
             <button id="strikeBtn" class="buttons">
                 <del>S</del>
-            </button>            
+            </button>
+            
+            <button id="subscriptBtn" class="buttons">
+                    <span style="font-size:12px;">A<sub>A</sub></span>
+            </button>
+
+            <button id="superscriptBtn" class="buttons">
+                   <span style="font-size:12px;"> A<sup>A</sup></span>
+            </button>
+
         </div>
 
         <div id="textContainer">
-
-                <!-- <div class='resizable' >
-                    <div class='resizers'>
-                    
-                        <div id="dragger"></div>
-                        <div id="textbox"></div>
-                
-                        <div class='resizer top-left'></div>
-                        <div class='resizer top-right'></div>
-                        <div class='resizer bottom-left'></div>
-                        <div class='resizer bottom-right'></div>
-                
-                    </div>
-                </div> -->
+            <!-- All divs will appear here -->
 
         </div>
 
         <script src="main.js"></script>
-        <!-- <script src="drag.js"></script>
-        <script src="resize.js"></script> -->
+        <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
+        
     </body>
 </html>
